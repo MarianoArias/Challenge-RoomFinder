@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+    
+    redis-server:
+        image: 'redis:4'
+        ports:
+            - '6363:6379'
+            
+    api-server:
+        build:
+            context: ./
+            dockerfile: docker/Dockerfile
+        volumes:
+            - '/var/www/html/vendor'
+            - './:/var/www/html:cached'
+            - './docker/vhost.conf:/etc/apache2/sites-available/000-default.conf'
+        tty: true
+        ports:
+            - '8585:80/tcp'
+        depends_on:
+            - redis-server
+        links:
+            - redis-server
