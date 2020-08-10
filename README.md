@@ -40,7 +40,7 @@ docker-compose exec api-server ./bin/phpunit
 > The first time it will take some time since it will download PHPUnit.
 
 
-## Assumptions and Extras
+## Assumptions and extras
 > In case an advertiser API is down, the application will continue working, but it will not show any room or deal from that advertiser.
 
 > The application processes and caches the response in Redis every 1 minute with a cron, that is why there may be a delay of this time when an advertiser makes a change.
